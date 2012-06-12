@@ -1,7 +1,7 @@
-#shareacc
+# shareacc
 Share your accounts with your friends over a webpanel
 
-##Introduction
+## Introduction
 1. Add the files in htdocs/ and cgi-bin/ to the realted folders of your http server.
 2. Compile the files in cgi-bin/ with make or your favourite compiler
 3. Set all required rights to shareacc and switch
