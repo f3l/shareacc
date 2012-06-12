@@ -10,3 +10,6 @@
 *.lai
 *.la
 *.a
+
+# Your personal config
+shareacc.cfg
