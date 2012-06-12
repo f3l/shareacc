@@ -73,31 +73,24 @@ class Account
 
 	void out()  // print method
 	{
-		std::string checked = "";
 		table_td(nr);
 		table_td(type);
 		table_td(owner);
 		table_td(user);
 		table_td(password);
-		if(used == "Yes")
-		{
-			table_td("<img src=\"/img/busy.png\" width=\"16\" height=\"16\">  Yes");
-			checked = "checked=\"checked\" ";
-		}
-		else if(used == "No")
-			table_td("<img src=\"/img/online.png\" width=\"16\" height=\"16\">  No");
-		else
-			table_td("ERROR!");
+		std::string checked=used=="Yes"?"checked=\"checked\" ":"";
+		std::string image_path=used=="Yes"?"busy.png":"online.png";
+		table_td(used=="Yes" || used=="No"?"<img src=\"/img/"+image_path+\" width=\"16\" height=\"16\"> "+used:"ERROR!");
 		std::cout << "<td>" << "<input type=\"checkbox\" onchange=\"document.forms[0].submit()\" name=\"" << nr << "\" " << checked << "/>" << "</td>" << std::endl;
 	}
 };
 
-unsigned int Account::last_nr=0;  // set list counter to zero
+unsigned int Account::last_nr=0;
 
 int main ()
 {	
-	ini config("shareacc.cfg");  // open config shareacc.cfg	
-	if (!(config.Good()))  // test if config could successfully openened
+	ini config("shareacc.cfg");
+	if (!(config.Good()))
 	{
 		std::cout << "Content-type: text/html\n" << std::endl;
 		std::cout << "<h2>Could not open cfg!</h2>" << std::endl;
@@ -112,7 +105,7 @@ int main ()
 
 	Account *accounts = new Account [(config.CountSections()-1)];  // create as many accounts as necessary (-1 because of the main section)
 
-	for (unsigned int k=0; k<(config.CountSections()-1); k++)  // initialize objects
+	for (unsigned int k=0; k<(config.CountSections()-1); ++k)  // initialize objects
 	{
 		std::string section = boost::lexical_cast<std::string>(k+1);
 		const char *s = section.c_str();
@@ -152,7 +145,7 @@ int main ()
 	table_td("<b>In Usage?</b>");
 	table_trr();
 
-	for (unsigned int k=0; k<(config.CountSections()-1); k++)
+	for (unsigned int k=0; k<(config.CountSections()-1); ++k)
 	{
 		table_tr();
 		accounts[k].out();
@@ -171,6 +164,6 @@ int main ()
 
 	std::cout << "</body>" << std::endl;
 
-	delete[] accounts;  // clean memory
+	delete[] accounts;
 	return 0;
 }

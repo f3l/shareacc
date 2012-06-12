@@ -7,10 +7,10 @@
 
 int main ()
 {
-	cgicc::Cgicc formData;  // create form object
+	cgicc::Cgicc formData;
 
-    ini config("shareacc.cfg");  // open config shareacc.cfg
-    if (!(config.Good()))  // test if config could successfully openened
+    ini config("shareacc.cfg");
+    if (!(config.Good()))
     {
         std::cout << "Content-type: text/html\n" << std::endl;
         std::cout << "<h2>Could not open cfg!</h2>" << std::endl;
@@ -20,7 +20,7 @@ int main ()
 	
 	if(formData.getEnvironment().getRequestMethod() == "POST")
 	{
-		for(unsigned int i=0; i<(config.CountSections()-1); i++)  // write checkbox options into config
+		for(unsigned int i=0; i<(config.CountSections()-1); ++i)  // write checkbox options into config
 		{
 			std::string nr = boost::lexical_cast<std::string>(i+1);
 			const char *c_nr = nr.c_str();
