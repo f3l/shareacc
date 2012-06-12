@@ -28,9 +28,7 @@ int main ()
 			if(formData.queryCheckbox(c_nr))
 			{
 				config.Set(c_nr, "used", "Yes");
-				std::string a_time = boost::lexical_cast<std::string>(time(NULL));
-				const char *c_time = a_time.c_str();
-				config.Set(c_nr, "last_modified", c_time);
+				config.Set(c_nr, "last_modified", boost::lexical_cast<std::string>(time(NULL)).c_str());
 			}
 			else
 			{
