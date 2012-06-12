@@ -1,0 +1,13 @@
+td, th {
+	border: 1px solid #ddd;
+	padding: 2px;
+}
+
+div.footer {
+	color: #aaa;
+	font-size: 12px;
+}
+
+div.footer a {
+	color: #aaa;
+}
