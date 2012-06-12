@@ -80,7 +80,7 @@ class Account
 		table_td(password);
 		std::string checked=used=="Yes"?"checked=\"checked\" ":"";
 		std::string image_path=used=="Yes"?"busy.png":"online.png";
-		table_td(used=="Yes" || used=="No"?"<img src=\"/img/"+image_path+" width=\"16\" height=\"16\"> "+used:"ERROR!");
+		table_td(used=="Yes" || used=="No"?"<img src=\"/img/"+image_path+"\" width=\"16\" height=\"16\"> "+used:"ERROR!");
 		std::cout << "<td>" << "<input type=\"checkbox\" onchange=\"document.forms[0].submit()\" name=\"" << nr << "\" " << checked << "/>" << "</td>" << std::endl;
 	}
 };
