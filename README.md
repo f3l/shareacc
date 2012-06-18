@@ -14,7 +14,8 @@ The shareacc.cfg is a ini config file. (Yeah, I know, it's not for temporary thi
   * You have to set at least two sections, the [main] and the [1] section.
   * When you want to add more than one account, you must entitle very section with [(previous section)+1]
 
-```[main]
+```ini
+[main]
 title=Foo Bar
 
 [1] 
