@@ -22,10 +22,23 @@ int main ()
 	{
 		for(unsigned int i=0; i<(config.CountSections()-1); ++i)  // write checkbox options into config
 		{
+			std::string v_nr;
+
 			std::string nr = boost::lexical_cast<std::string>(i+1);
 			const char *c_nr = nr.c_str();
 
-			if(formData.queryCheckbox(c_nr))
+			// expired
+			v_nr = "e"+boost::lexical_cast<std::string>(i+1);
+			const char *c_enr = v_nr.c_str();
+			if(formData.queryCheckbox(c_enr))
+				config.Set(c_nr, "expired", "Yes");
+			else
+				config.Set(c_nr, "expired", "No");
+
+			// in usage
+			v_nr = "u"+boost::lexical_cast<std::string>(i+1);
+			const char *c_unr = v_nr.c_str();
+			if(formData.queryCheckbox(c_unr))
 			{
 				config.Set(c_nr, "used", "Yes");
 				config.Set(c_nr, "last_modified", boost::lexical_cast<std::string>(time(NULL)).c_str());

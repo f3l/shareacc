@@ -1,10 +1,11 @@
-[main]  ; This main section and at least one account section have to exist!
-title=Foo Bar  ; the title string of your webpanel
+[main]
+title=Foo Bar
 
 [1] 
-type=example.com  ; for example the URL of the account
-owner=Li Ziege  ; the owner of the account
+type=example.com
+owner=Li Ziege
 user=li.ziege
 password=foobar123
-used=No  ; set it to No
-last_modified=0  ; also set it to the default value: 0
+expired=No
+used=No
+last_modified=0

@@ -65,6 +65,7 @@ class Account
 	std::string user;
 	std::string password;
 	std::string used;
+	std::string expired;
 
 	Account ()
 	{
@@ -73,15 +74,27 @@ class Account
 
 	void out()  // print method
 	{
+		std::string checked;
+
+		if (expired=="Yes")
+			std::cout << "<tr style=\"color: #FF0000;\">" << std::endl;
+		else
+			table_tr();
+
 		table_td(nr);
 		table_td(type);
 		table_td(owner);
 		table_td(user);
 		table_td(password);
-		std::string checked=used=="Yes"?"checked=\"checked\" ":"";
+
+		checked=expired=="Yes"?"checked=\"checked\" ":"";
+		std::cout << "<td>" << "<input type=\"checkbox\" onchange=\"document.forms[0].submit()\" name=\"e" << nr << "\" " << checked << "/>" << "</td>" << std::endl;
+
+		checked=used=="Yes"?"checked=\"checked\" ":"";
 		std::string image_path=used=="Yes"?"busy.png":"online.png";
 		table_td(used=="Yes" || used=="No"?"<img src=\"/img/"+image_path+"\" width=\"16\" height=\"16\"> "+used:"ERROR!");
-		std::cout << "<td>" << "<input type=\"checkbox\" onchange=\"document.forms[0].submit()\" name=\"" << nr << "\" " << checked << "/>" << "</td>" << std::endl;
+		std::cout << "<td>" << "<input type=\"checkbox\" onchange=\"document.forms[0].submit()\" name=\"u" << nr << "\" " << checked << "/>" << "</td>" << std::endl;
+		table_trr();
 	}
 };
 
@@ -118,6 +131,7 @@ int main ()
 		accounts[k].owner = config.Get(s, "owner");
 		accounts[k].user = config.Get(s, "user");
 		accounts[k].password = config.Get(s, "password");
+		accounts[k].expired = config.Get(s, "expired");
 		accounts[k].used = config.Get(s, "used");
 	}
 	
@@ -142,14 +156,13 @@ int main ()
 	table_td("<b>Owner</b>");
 	table_td("<b>User</b>");
 	table_td("<b>Password</b>");
+	table_td("<b>Expired?</b>");
 	table_td("<b>In Usage?</b>");
 	table_trr();
 
 	for (unsigned int k=0; k<(config.CountSections()-1); ++k)
 	{
-		table_tr();
 		accounts[k].out();
-		table_trr();
 	}
 	
 	std::cout << "</tbody>" << std::endl;
