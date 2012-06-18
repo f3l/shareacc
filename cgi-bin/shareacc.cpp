@@ -157,7 +157,7 @@ int main ()
 	table_td("<b>User</b>");
 	table_td("<b>Password</b>");
 	table_td("<b>Expired?</b>");
-	table_td("<b>In Usage?</b>");
+	std::cout << "<th colspan=\"2\"><b>In Usage?</b></th>" << std::endl;
 	table_trr();
 
 	for (unsigned int k=0; k<(config.CountSections()-1); ++k)
