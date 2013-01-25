@@ -42,7 +42,7 @@ def getRemoteInfo(provider, user, password):
 		'valid': ac.valid, # in terms of right passwd
 		'premium': ac.premium,
 		'validuntil': ac.validuntil,
-		'validuntil_p': time.asctime(time.localtime(ac.validuntil)),
+		'validuntil_p': time.strftime('%Y-%m-%d %H:%M', time.localtime(ac.validuntil)),
 		'trafficleft': ac.trafficleft,
 	}
 
