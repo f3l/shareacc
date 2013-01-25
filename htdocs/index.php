@@ -1,3 +1,3 @@
 <?php
-header('Location: /cgi-bin/shareacc');
+header('Location: /cgi-bin/index.py');
 ?>

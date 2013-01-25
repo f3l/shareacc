@@ -1,0 +1,131 @@
+{% extends 'default/base.html' %}
+{% block title %}
+    {{ _("Dashboard") }} - {{ super() }}
+{% endblock %}
+
+{% block css %}
+    <link href="static/css/default/dashboard.less" rel="stylesheet/less" type="text/css" media="screen"/>
+{% endblock %}
+
+{% block require %}
+    App.initPackageTree();
+{% endblock %}
+
+{% block head %}
+    <script type="text/template" id="template-package">
+        <div class="package-header">
+            <div class="package-row first">
+                <span class="checkbox"></span>
+                <i class="icon-folder-close icon-white"></i>&nbsp;
+                <span class="name">
+                Package <% pid %>: <% name %>
+                </span>
+            </div>
+            <div class="package-row second">
+                <span>
+                <% stats.linksdone %> / <% stats.linkstotal %>
+                </span>
+                <span class="pull-right">
+                    <% formatSize stats.sizedone %> / <% formatSize stats.sizetotal %>
+                </span>
+            </div>
+
+            <div class="package-row third pull-right">
+                <div class="tag-area">
+                    <span class="badge badge-important badge-ghost"><i class="icon-tag icon-white"></i> Add Tag</span>
+                    <span class="badge badge-important"><i class="icon-tag icon-white"></i> tag</span>
+                    <span class="badge badge-important"><i class="icon-tag icon-white"></i> tag2</span>
+                </div>
+                {#                <i class="icon-wrench icon-white pull-right"></i>#}
+                {#                <i class="icon-remove icon-white pull-right"></i>#}
+                <div class="btn-group">
+                    <button class="btn btn-mini btn-yellow"><i class="icon-play icon-white"></i></button>
+                    <button class="btn btn-mini btn-yellow btn-remove"><i class="icon-remove icon-white"></i></button>
+                    <button class="btn btn-mini btn-yellow"
+                            data-toggle="dropdown">
+                        <i class="icon-wrench icon-white"></i></button>
+                    <ul class="dropdown-menu">
+                        <li><a>Some</a></li>
+                        <li><a>Options</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/template" id="template-file">
+        <div>
+            <div class="file-row first">
+                File <% fid %>: <% name %>
+            </div>
+            <div class="file-row second">
+                <% download.statusmsg %>
+                <span class="pull-right">
+                    Size: <% formatSize size %>
+                </span>
+            </div>
+
+            <div class="file-row third">
+                <% download.plugin %>
+            </div>
+        </div>
+    </script>
+{% endblock %}
+
+{% block content %}
+    <ul id="dash-nav" class="nav nav-pills">
+        <li>
+            <ul class="breadcrumb">
+                <li><a href="#">{{ _("Home") }}</a> <span class="divider">/</span></li>
+                <li class="active">Data</li>
+            </ul>
+        </li>
+
+        <li style="float: right;">
+            <form class="form-search">
+                <div class="input-append">
+                    <input type="text" class="span2 search-query">
+                    <button type="submit" class="btn">{{ _("Search") }}</button>
+                </div>
+            </form>
+        </li>
+        <li class="dropdown" style="float: right;">
+            <a class="dropdown-toggle"
+               data-toggle="dropdown"
+               href="#">
+                Type
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a><i class="icon-ok"></i>&nbsp;Audio</a></li>
+                <li><a><i class="icon-remove"></i>&nbsp;Video</a></li>
+                <li><a>Archive</a></li>
+            </ul>
+        </li>
+        <li class="dropdown" style="float: right;">
+            <a class="dropdown-toggle"
+               data-toggle="dropdown"
+               href="#">
+                More
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a>Active</a></li>
+                <li><a>Failed</a></li>
+            </ul>
+        </li>
+
+        <li style="float: right;">
+            <a>Failed</a>
+        </li>
+        <li style="float: right;">
+            <a>Unfinished</a>
+        </li>
+        <li class="active" style="float: right;">
+            <a href="#" id="show_active">All</a>
+        </li>
+    </ul>
+    <div id="dashboard">
+        {#  Build up by js #}
+    </div>
+{% endblock %}

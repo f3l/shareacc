@@ -1,0 +1,197 @@
+﻿@import "style.less";
+
+/*
+    Dashboard
+*/
+
+.nav > li > a:hover {
+  color: @blue;
+}
+
+#dash-nav {
+  border-bottom: 1px dashed @grey;
+  padding-bottom: 2px;
+  margin-bottom: 5px;
+}
+
+#dash-nav > li > a {
+  margin-top: 5px;
+}
+
+#dash-nav .breadcrumb {
+  margin: 0;
+  padding-top: 10px;
+  padding-bottom: 0;
+
+  .active {
+    color: @grey;
+  }
+
+}
+
+#dash-nav form {
+  margin-top: 8px;
+  margin-bottom: 0;
+}
+
+#dash-nav input, #dash-nav button {
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+#dash-nav .dropdown-menu i {
+  margin-top: 4px;
+  padding-right: 5px;
+}
+
+#dashboard ul {
+  margin: 0;
+  list-style: none;
+}
+
+/*
+  Package View
+*/
+
+.package-view {
+  margin-bottom: 3px;
+  overflow: hidden;
+}
+
+.package-view > div {
+  color: @light;
+  .gradient(top, @blue, @blueLight); //  background-color: @blue;
+  border-radius: 5px;
+  line-height: 28px;
+}
+
+.package-view > div:hover {
+  .gradient(top, @blue, @blueDark);
+}
+
+.package-row {
+  display: inline-block;
+  height: 100%;
+  padding-left: 8px;
+  padding-right: 8px;
+
+  .name {
+    cursor: pointer;
+  }
+
+  i {
+    margin-top: 3px;
+  }
+
+  i.pull-right {
+    margin-top: 8px;
+  }
+
+  .badge {
+    margin-right: 4px;
+  }
+
+}
+
+.package-row.first {
+  width: 50%;
+  font-weight: bold;
+
+  i {
+    cursor: move;
+  }
+
+}
+
+.package-row.second {
+  width: 20%;
+  .gradient(top, @blueDark, @blueDarker);
+  font-size: smaller;
+}
+
+.package-row.third {
+  line-height: 26px;
+
+}
+
+.package-view a {
+  color: @light;
+}
+
+// Tag area with different effect on hover
+.tag-area {
+  display: inline-block;
+
+  .badge i {
+    cursor: pointer;
+    &:hover {
+      background-position: -312px 0; // Remove icon
+    }
+  }
+
+  .badge-ghost {
+    visibility: hidden;
+    cursor: pointer;
+    opacity: 0.5;
+  }
+
+  &:hover .badge-ghost {
+    visibility: visible;
+  }
+
+}
+
+// Box containing the files
+.package-view > ul {
+  overflow: hidden;
+  .gradient(left, @light, @greenLight); //  box-shadow: 0 0 5px black;
+}
+
+/*
+  File view
+*/
+
+.file-view {
+  margin-top: 3px;
+}
+
+.file-view > div {
+  border-radius: 5px; //  .gradient(top,  @blueLighter, @blueLightest);
+  line-height: 26px;
+}
+
+.file-view > div:hover {
+  .gradient(top, @blue, @blueLight)
+}
+
+.file-row {
+  display: inline-block;
+  height: 100%;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.file-row.first {
+  width: 50%;
+}
+
+.file-row.second {
+  width: 30%;
+}
+
+/*
+FANCY CHECKBOXES
+*/
+.checkbox {
+  display: inline;
+  width: 20px;
+  height: 21px;
+  margin: -1px 4px 0 0;
+  vertical-align: middle;
+  background: url(../../img/default/checks_sheet.png) left top no-repeat;
+  cursor: pointer;
+}
+
+.checkbox.checked {
+  background: url(../../img/default/checks_sheet.png) -21px top no-repeat;
+}
