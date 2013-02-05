@@ -2,6 +2,7 @@
 
 import yaml
 import info
+import time
 
 print "Content-type: text/html\n"
 
@@ -38,15 +39,20 @@ for account in accounts:
 
 	trafficleft = ainfo.get('trafficleft', -1)
 	trafficleft = "%i GB" % (trafficleft / 1000000) if trafficleft > 0 else "n/a"
+	used = ainfo.get('used', False)
+	if used and used > (int(time.time()) - 12 * 3600):
+		used = True
+	else:
+		used = False
 
 	account.update({
 		'css_expired': '' if ainfo.get('premium', True) else 'expired',
 		'css_invalid': '' if ainfo.get('valid', True) else 'invalid',
 		'valid': ainfo.get('validuntil_p', 'n/a') if ainfo.get('premium', True) else '<div title="%s">expired</div>' % ainfo.get('validuntil_p', ''),
 		'traffic': trafficleft,
-		'used_icon': 'busy' if ainfo.get('used', False) else 'online',
-		'used_text': 'Yes' if ainfo.get('used', False) else 'No',
-		'used_checked': 'checked="checked"' if ainfo.get('used', False) else '',
+		'used_icon': 'busy' if used else 'online',
+		'used_text': 'Yes' if used else 'No',
+		'used_checked': 'checked="checked"' if used else '',
 	})
 	print """
 				<tr class="%(css_invalid)s %(css_expired)s">
